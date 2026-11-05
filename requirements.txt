@@ -1,0 +1,5 @@
+discord.py>=2.4,<3
+aiosqlite>=0.19
+PyYAML>=6.0
+python-dotenv>=1.0
+ruamel.yaml>=0.18
