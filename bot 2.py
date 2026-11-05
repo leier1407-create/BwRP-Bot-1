@@ -3867,16 +3867,13 @@ class Tickets(commands.Cog):
         if row["uebernommen"]:
             e.add_field(name=T("tickets.feld_bearbeiter", "Bearbeitet von"), value=f"<@{row['uebernommen']}>")
         e.add_field(name=T("tickets.feld_grund", "Grund"), value=grund or "–", inline=False)
-        await u.send_log(self.bot, interaction.guild, "ticket", e,
-                         discord.File(datei, filename=f"ticket-{row['nummer']:04d}.txt"))
+             await u.send_log(self.bot, interaction.guild, "ticket", e)
+
         ersteller = interaction.guild.get_member(row["user_id"])
         if ersteller and self.bot.cfg.get("tickets", {}).get("transkript_an_user", True):
-            datei.seek(0)
-            try:
-                await ersteller.send(embed=e, file=discord.File(datei, filename=f"ticket-{row['nummer']:04d}.txt"))
-            except discord.HTTPException:
-                pass
-        await ch.delete(reason=f"Ticket geschlossen von {interaction.user}")
+                        try:
+                await ersteller.send(embed=e)
+
 
     # ----------------------------------------------------------- /ticket
     @stufe("admin")
